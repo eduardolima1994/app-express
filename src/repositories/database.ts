@@ -1,6 +1,6 @@
 import { Client } from "pg";
 const DBSOURCE = "postgres://postgres:mypassword@localhost:5432/postgres";
-const SQL_ITENS_CREATE = `CREATE TABLE IF NOT EXISTS itens ( id SERIAL PRIMARY KEY, nome TEXT, descricao TEXT )`;
+const SQL_ITENS_CREATE = `CREATE TABLE IF NOT EXISTS produtos ( id UUID DEFAULT gen_random_uuid(), nome TEXT, descricao TEXT, preco TEXT, PRIMARY KEY (id));`;
 const client = new Client({
   connectionString: DBSOURCE,
 });
@@ -11,7 +11,7 @@ client
     client
       .query(SQL_ITENS_CREATE)
       .then(() => {
-        console.log("Table itens created successfully");
+        console.log("Table products created successfully");
       })
       .catch((err) => {
         console.error(err);
