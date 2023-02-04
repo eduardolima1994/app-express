@@ -21,7 +21,7 @@ itensRouter.get("/itens", (req, res) => {
 });
 
 itensRouter.get("/itens/:id", (req, res) => {
-  let id: string = req.params.id;
+  const id: string = req.params.id;
   itensRepository.ler(id, (item) => {
     if (item) {
       res.json(item);
