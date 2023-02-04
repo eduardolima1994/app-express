@@ -21,7 +21,7 @@ itensRouter.get("/itens", (req, res) => {
 });
 
 itensRouter.get("/itens/:id", (req, res) => {
-  const id: number = +req.params.id;
+  let id: string = req.params.id;
   itensRepository.ler(id, (item) => {
     if (item) {
       res.json(item);
@@ -32,7 +32,7 @@ itensRouter.get("/itens/:id", (req, res) => {
 });
 
 itensRouter.put("/itens/:id", (req, res) => {
-  const id: number = +req.params.id;
+  const id: string = req.params.id;
   itensRepository.atualizar(id, req.body, (notFound) => {
     if (notFound) {
       res.status(404).send();
@@ -43,7 +43,7 @@ itensRouter.put("/itens/:id", (req, res) => {
 });
 
 itensRouter.delete("/itens/:id", (req, res) => {
-  const id: number = +req.params.id;
+  const id: string = req.params.id;
   itensRepository.apagar(id, (notFound) => {
     if (notFound) {
         res.status(404).send()

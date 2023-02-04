@@ -1,7 +1,8 @@
 type Item = {
-  id?: number;
+  id?: string;
   nome: string;
   descricao: string;
+  preco: string;
 };
 
 export default Item;

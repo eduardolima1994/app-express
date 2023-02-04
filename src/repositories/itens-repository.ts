@@ -1,9 +1,9 @@
 import Item from "../models/item";
 import client from "./database";
 const itensRepository = {
-  criar: (item: Item, callback: (id?: number) => void) => {
-    const sql = `INSERT INTO itens (nome, descricao) VALUES ($1, $2)`;
-    const params = [item.nome, item.descricao];
+  criar: (item: Item, callback: (id?: string) => void) => {
+    const sql = `INSERT INTO produtos (nome, descricao, preco) VALUES ($1, $2, $3)`;
+    const params = [item.nome, item.descricao, item.preco];
     client
       .query(sql, params)
       .then(() => {
@@ -16,7 +16,7 @@ const itensRepository = {
       });
   },
   lerTodos: (callback: (itens: Item[]) => void) => {
-    const sql = "SELECT * FROM itens";
+    const sql = "SELECT * FROM produtos";
     const params: any[] = [];
     client
       .query(sql, params)
@@ -28,8 +28,8 @@ const itensRepository = {
         throw err;
       });
   },
-  ler: (id: number, callback: (item?: Item) => void) => {
-    const sql = "SELECT * FROM itens WHERE id = $1";
+  ler: (id: string, callback: (item?: Item) => void) => {
+    const sql = "SELECT * FROM produtos WHERE id = $1";
     const params = [id];
     client
       .query(sql, params)
@@ -42,12 +42,12 @@ const itensRepository = {
       });
   },
   atualizar: (
-    id: number,
+    id: string,
     item: Item,
     callback: (notFound: boolean) => void
   ) => {
-    const sql = "UPDATE itens SET nome = $1, descricao = $2 WHERE id = $3";
-    const params = [item.nome, item.descricao, id];
+    const sql = "UPDATE produtos SET nome = $1, descricao = $2, preco = $3 WHERE id = $4";
+    const params = [item.nome, item.descricao, item.preco, id];
     client
       .query(sql, params)
       .then((res) => {
@@ -58,8 +58,8 @@ const itensRepository = {
         throw err;
       });
   },
-  apagar: (id: number, callback: (notFound: boolean) => void) => {
-    const sql = "DELETE FROM itens WHERE id = $1";
+  apagar: (id: string, callback: (notFound: boolean) => void) => {
+    const sql = "DELETE FROM produtos WHERE id = $1";
     const params = [id];
     client
       .query(sql, params)
