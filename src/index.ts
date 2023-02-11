@@ -12,7 +12,12 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 // Endpoint raiz
 app.get('/', (req, res) => {
-    res.send('Bem-vindo!')
+    res.json({
+        expressApp: {
+            version: '1.0',
+            status: 'running'
+        }
+    })
 })
 // Cors
 app.use(cors({
