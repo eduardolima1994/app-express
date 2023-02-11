@@ -1,5 +1,7 @@
 import { Client } from "pg";
-const DBSOURCE = "postgresql://postgres:2WEwUb0HOqTnzEWDzrMR@containers-us-west-162.railway.app:5964/railway";
+import * as dotenv from 'dotenv' 
+dotenv.config()
+const DBSOURCE = process.env.DB_CONNECTION;
 const SQL_ITENS_CREATE = `CREATE TABLE IF NOT EXISTS produtos ( id UUID DEFAULT gen_random_uuid(), nome TEXT, descricao TEXT, preco TEXT, PRIMARY KEY (id));`;
 
 const client = new Client({
