@@ -5,7 +5,7 @@
       "buildCommand": "echo building!"
     },
     "deploy": {
-      "startCommand": "echo starting!",
+      "startCommand": "npm run build",
       "healthcheckPath": "/",
       "restartPolicyType": "NEVER",
       "healthcheckTimeout": 100
