@@ -10,6 +10,7 @@ Essas instruções permitirão que você obtenha uma cópia do projeto em opera�
 
 ### 📋 Pré-requisitos
 
+
 ```
 Node v16.15.0
 npm v8.5.5
